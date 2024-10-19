@@ -18,7 +18,7 @@ class CurrentCommunicationModel(DateTimeStampedModel):
               (5, 'receive error'),
               (6, 'transmit error')]
 
-    CHANGING_VARIABLE_VALUE = [(False, 'value changed'),
+    VARIABLE_VALUE_STATUS = [(False, 'value changed'),
                                (True, 'value not changed')]
 
     ORDER_REQUEST = [(True, 'in progress'),
@@ -31,7 +31,7 @@ class CurrentCommunicationModel(DateTimeStampedModel):
     periodically_or_request = models.BooleanField(choices=PERIODICALLY_OR_REQUEST, default=False)
     order_request = models.BooleanField(choices=ORDER_REQUEST, default=True)
     communication_status = models.PositiveSmallIntegerField(choices=COMMUNICATION_STATUS, default=0)
-    changing_variable_value = models.BooleanField(choices=CHANGING_VARIABLE_VALUE, null=True, blank=True)
+    variable_value_status = models.BooleanField(choices=VARIABLE_VALUE_STATUS, null=True, blank=True)
 
     class Meta:
         unique_together = ['variable_id', 'receive_or_transmit', 'periodically_or_request']
