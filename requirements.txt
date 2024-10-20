@@ -1,1 +1,8 @@
-Django~=5.0.6
+Django==5.1b1
+python-decouple==3.8
+psycopg2-binary==2.9.9
+crispy-bootstrap5==2024.2
+django-crispy-forms==2.2
+pillow==10.4.0
+celery==5.4.0
+pymodbus==3.7.3
