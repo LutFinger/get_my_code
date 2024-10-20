@@ -1,0 +1,17 @@
+.background-grey {
+    background-color: darkgray;
+}
+
+.text-light-gray {
+    color: lightgray;
+}
+.head {
+    border-width: 5px;
+    border-style: solid;
+    border-color: darkgreen;
+    border-radius: 10px;
+    background-color: darkolivegreen;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+}
