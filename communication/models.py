@@ -1,6 +1,6 @@
 from django.db import models
 from main.models import DateTimeStampedModel
-from variables.models import VariableModel
+from variables.models import VariablesModel
 
 
 class CurrentCommunicationModel(DateTimeStampedModel):
@@ -24,7 +24,7 @@ class CurrentCommunicationModel(DateTimeStampedModel):
     ORDER_REQUEST = [(True, 'in progress'),
                      (False, 'done')]
 
-    variable_id = models.ForeignKey(VariableModel, on_delete=models.CASCADE, null=True, blank=True)
+    variable_id = models.ForeignKey(VariablesModel, on_delete=models.CASCADE, null=True, blank=True)
     transmit_value = models.PositiveIntegerField(blank=True, null=True)
     received_value = models.PositiveIntegerField(blank=True, null=True)
     receive_or_transmit = models.BooleanField(choices=RECEIVE_OR_TRANSMIT, default=False)
