@@ -3,7 +3,7 @@ import django
 django.setup()
 from celery import shared_task
 from celery.utils.log import get_task_logger
-from variables.models import DevicesModel, VariableModel
+from variables.models import DevicesModel, VariablesModel
 from pymodbus.client import ModbusTcpClient
 from communication.models import CurrentCommunicationModel
 import time
@@ -16,7 +16,7 @@ def modbus_communication():
     print('communication_start')
 
     all_current_communications = CurrentCommunicationModel.objects.all()
-    all_devices = DevicesModel.objects.all()
+    all_devices = DevicesModel.objects.filter(connection_protocol=0)
 
     variables_for_current_receive_id_list = []
     variables_for_current_transmit_id_list = []
@@ -35,7 +35,7 @@ def modbus_communication():
     for device in all_devices:
 
         for current_communication in all_current_communications:
-            variable = VariableModel.objects.filter(id=current_communication.variable_id.id)
+            variable = VariablesModel.objects.filter(id=current_communication.variable_id.id)
 
             if device.id == variable[0].device_id:
 
@@ -108,7 +108,7 @@ def modbus_communication():
             non_connection = False
 
             get_current_transmit = CurrentCommunicationModel.objects.get(id=current_transmit_id)
-            get_current_variable = VariableModel.objects.get(id=get_current_transmit.variable_id.id)
+            get_current_variable = VariablesModel.objects.get(id=get_current_transmit.variable_id.id)
 
             ip = variables_for_current_transmit_dictionary['ip'][index]
             port = variables_for_current_transmit_dictionary['port'][index]
@@ -242,7 +242,7 @@ def modbus_communication():
         for current_receive_id in id_list:
             non_connection = False
             get_current_received = CurrentCommunicationModel.objects.get(id=current_receive_id)
-            get_current_variable = VariableModel.objects.get(id=get_current_received.variable_id.id)
+            get_current_variable = VariablesModel.objects.get(id=get_current_received.variable_id.id)
             ip = variables_for_current_receive_dictionary['ip'][index]
             port = variables_for_current_receive_dictionary['port'][index]
             address = variables_for_current_receive_dictionary['address'][index]
