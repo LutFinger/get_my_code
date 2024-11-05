@@ -11,10 +11,9 @@ class DevicesModel(admin.ModelAdmin):
                     'communication_type',
                     'communication_port']
 
-@admin.register(models.VariableModel)
-class VariableModel(admin.ModelAdmin):
-    list_display = ['device_id',
-                    'variable_name',
+@admin.register(models.VariablesModel)
+class VariablesModel(admin.ModelAdmin):
+    list_display = ['variable_name',
                     'variable_address',
                     'variable_type',
                     'variable_value']
